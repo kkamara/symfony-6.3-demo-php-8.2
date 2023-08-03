@@ -68,4 +68,4 @@ jobs:
               run: vendor/bin/simple-phpunit --version
 
             - name: "Run tests"
-              run: vendor/bin/simple-phpunit ${{ env.PHPUNIT_FLAGS }}
+              run: SYMFONY_DEPRECATIONS_HELPER=disabled vendor/bin/simple-phpunit ${{ env.PHPUNIT_FLAGS }}
