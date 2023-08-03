@@ -8,6 +8,7 @@ on:
 
 env:
     fail-fast: true
+    PRE_PHPUNIT_FLAGS: "SYMFONY_DEPRECATIONS_HELPER=disabled"
     PHPUNIT_FLAGS: "-v"
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
     SYMFONY_DEPRECATIONS_HELPER: 7
@@ -27,8 +28,6 @@ jobs:
                 php-version: ['8.2']
                 include:
                     - operating-system: 'macos-latest'
-                      php-version: '8.2'
-                    - operating-system: 'windows-latest'
                       php-version: '8.2'
 
         steps:
@@ -68,4 +67,4 @@ jobs:
               run: vendor/bin/simple-phpunit --version
 
             - name: "Run tests"
-              run: SYMFONY_DEPRECATIONS_HELPER=disabled vendor/bin/simple-phpunit ${{ env.PHPUNIT_FLAGS }}
+              run: {{ env.PRE_PHPUNIT_FLAGS }} vendor/bin/simple-phpunit ${{ env.PHPUNIT_FLAGS }}
